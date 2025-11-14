@@ -61,7 +61,7 @@ header:
     button:
       enable: true
       text: 'Book a Tour'
-      url: 'https://hugoblox.com/templates/'
+      url: '/tour'
     show_search: true
     show_theme_chooser: false
 

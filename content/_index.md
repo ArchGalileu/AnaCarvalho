@@ -13,10 +13,10 @@ sections:
       text: "Experience the breathtaking landscapes of Soajo and Parque Nacional Peneda Gerês with our expertly guided tours. Our experienced local guides will lead you through the most spectacular natural attractions."
       primary_action:
         text: "Book a Tour"
-        url: "#tours"
+        url: "/tour"
       secondary_action:
         text: "Learn More"
-        url: "#about"
+        url: "/about"
     design:
 #      css_class: "bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800"
       background:
