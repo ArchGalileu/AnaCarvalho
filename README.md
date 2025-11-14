@@ -1,32 +1,109 @@
-# [Hugo Landing Page Theme](https://github.com/HugoBlox/theme-landing-page)
+# Guided Tours in Soajo & Parque Peneda Gerês
 
-[![Screenshot](https://raw.githubusercontent.com/HugoBlox/theme-landing-page/main/.github/preview.webp)](https://hugoblox.com/templates/)
+A Hugo Blox-based website for guided tours in Soajo and Parque Peneda Gerês, featuring beautiful nature photography, video headers, and Stripe payments.
 
-The Hugo **Landing Page Template** empowers you to easily create startup websites, marketing websites, and landing pages to accelerate your business growth.
+## 🚀 Features
 
-️**Trusted by 250,000+ creators, teams, and organizations.** Highly customizable via the integrated **no-code, block-based website builder**, making every site truly personalized ⭐⭐⭐⭐⭐
+- **Landing Page Builder** - Powered by Hugo Blox with blocks-based editing
+- **Tour Management System** - Dedicated tours section with individual tour pages
+- **Stripe Integration** - Secure payment processing for bookings
+- **Video Headers** - Engaging video backgrounds for tour pages
+- **Multilingual Support** - Prepared for Portuguese, English, French, Spanish, and German
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
 
-[![Get Started](https://img.shields.io/badge/-Get%20started-ff4655?style=for-the-badge)](https://hugoblox.com/templates/)
-[![Discord](https://img.shields.io/discord/722225264733716590?style=for-the-badge)](https://discord.com/channels/722225264733716590/742892432458252370/742895548159492138)  
-[![Twitter Follow](https://img.shields.io/twitter/follow/GetResearchDev?label=Follow%20on%20Twitter)](https://x.com/BuildLore)
+## 📁 Content Structure
 
-[Check out the latest demo](https://theme-landing-page.netlify.app) of what you'll get in less than 10 minutes, or [view the showcase](https://hugoblox.com/creators/).
+```
+content/
+├── _index.md              # Homepage with blocks
+├── tours/                 # Tours section
+│   ├── _index.md         # Tours landing page
+│   ├── soajo-trail/      # Individual tour page
+│   └── cascata-arado/    # Another tour page
+├── contact/              # Contact page
+└── blog/                 # Additional content
+```
 
-The integrated [**Hugo Blox**](https://hugoblox.com) website builder and CMS makes it easy to create a beautiful website for free. Edit your site in the CMS (or your favorite editor), generate it with [Hugo](https://github.com/gohugoio/hugo), and deploy with GitHub or Netlify. Customize anything on your site with widgets, light/dark themes, and language packs.
+## 🎨 Page Builder
 
-- 👉 [**Get Started**](https://hugoblox.com/templates/)
-- 📚 [View the **documentation**](https://docs.hugoblox.com/)
-- 💬 [Chat with the **Hugo Blox Builder community**](https://discord.gg/z8wNYzb) or [**Hugo community**](https://discourse.gohugo.io)
-- ⬇️ **Automatically import citations from BibTeX** with the [Hugo Academic CLI](https://github.com/GetRD/academic-file-converter)
-- 🐦 Share your new site with the community: [@GetResearchDev](https://x.com/BuildLore) [@GeorgeCushen](https://twitter.com/GeorgeCushen) [#MadeWithHugoBlox](https://twitter.com/search?q=%23MadeWithHugoBlox&src=typed_query)
-- 🗳 [Take the survey and help us improve #OpenSource](https://forms.gle/NioD9VhUg7PNmdCAA)
-- 🚀 [Contribute improvements](https://github.com/HugoBlox/hugo-blox-builder/blob/main/CONTRIBUTING.md) or [suggest improvements](https://github.com/HugoBlox/hugo-blox-builder/issues)
-- ⬆️ **Updating?** View the [Update Guide](https://docs.hugoblox.com/) and [Release Notes](https://github.com/HugoBlox/hugo-blox-builder/releases)
+The site uses Hugo Blox's page builder system:
 
-## We ask you, humbly, to support this open source movement
+- Homepage uses blocks: hero, features, testimonials, CTAs
+- Tours page uses: hero, custom listing (via collection block)
+- Individual tours use rich markdown content
 
-Today we ask you to defend the open source independence of the Hugo Blox Builder and themes 🐧
+## 💰 Stripe Integration
 
-We're an open source movement that depends on your support to stay online and thriving, but 99.9% of our creators don't give; they simply look the other way.
+The site includes a Stripe checkout shortcode:
 
-### [❤️ Click here to become a GitHub Sponsor, unlocking awesome perks such as _exclusive academic templates and widgets_](https://github.com/sponsors/gcushen)
+```markdown
+{{< stripe-checkout tourId="unique-id" tourName="Tour Name" price=4500 text="Book Now - 45€" >}}
+```
+
+To configure:
+1. Update `config/_default/params.yaml` with your Stripe public key
+2. Implement server-side checkout session creation
+
+## 🌍 Multilingual Setup
+
+The site is prepared for multilingual support. To add languages:
+
+1. Duplicate content directories with language codes (e.g., `content/pt/tours/`)
+2. Update `config/_default/languages.yaml` with language configurations
+
+## 🖼️ Media & Video Headers
+
+To add video headers to pages:
+
+```yaml
+header:
+  video:
+    url: "media/your-video.mp4"
+    poster: "media/your-poster.jpg"
+```
+
+## 🔧 Customization
+
+### Adding Tours
+1. Create a new directory in `content/tours/[tour-name]/`
+2. Add an `index.md` file with proper frontmatter
+3. Include tour details and pricing
+
+### Updating Configuration
+- Site parameters: `config/_default/params.yaml`
+- Navigation: `config/_default/menus.yaml`
+- Languages: `config/_default/languages.yaml`
+
+## 🏗️ Building the Site
+
+### Development
+```bash
+hugo server
+```
+
+### Production
+```bash
+hugo --minify
+```
+
+## 📋 Required Post-Installation Steps
+
+1. **Add Media**: Place your Soajo/Parque Peneda Gerês photos and videos in `/static/media/`
+2. **Configure Stripe**: Add your real Stripe public key to `/config/_default/params.yaml`
+3. **Update Content**: Replace placeholder text with your actual tour descriptions
+4. **Add Branding**: Customize colors and add your logo in `/config/`
+5. **SEO Optimization**: Update meta descriptions and social media settings
+
+## 📚 Hugo Blox Documentation
+
+For more information about Hugo Blox features and customization:
+- [Page Builder Guide](https://docs.hugoblox.com/getting-started/page-builder/)
+- [Content Types](https://docs.hugoblox.com/reference/content-types/)
+- [Customization](https://docs.hugoblox.com/getting-started/customize/)
+
+## 🆘 Support
+
+For technical support on using Hugo Blox:
+- [Documentation](https://docs.hugoblox.com/)
+- [Community Forum](https://github.com/HugoBlox/hugo-blox-builder/discussions)
+- [GitHub Issues](https://github.com/HugoBlox/hugo-blox-builder/issues)

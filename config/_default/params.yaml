@@ -5,16 +5,16 @@
 
 # Appearance
 appearance:
-  mode: light
+  mode: dark
   color: indigo
 
 # SEO
 marketing:
   seo:
-    site_type: Person
-    local_business_type: ''
-    org_name: ''
-    description: 'A highly-customizable Hugo landing page theme powered by Hugo Blox website builder.'
+    site_type: LocalBusiness
+    local_business_type: 'Tour Agency'
+    org_name: 'Soajo Guided Tours'
+    description: 'Guided tours in Soajo & Parque Peneda Gerês with beautiful nature photography and video headers.'
     twitter: 'GetResearchDev'
   analytics:
     google_analytics: ''
@@ -25,6 +25,27 @@ marketing:
   verification:
     google: ''
     baidu: ''
+
+# Stripe Configuration
+stripe:
+  enable: true
+  public_key: pk_test_XXXXXXXXXXXXXXXXXXXXXXXX  # Replace with your actual public key
+
+# Video Header Configuration
+video_headers:
+  # Global settings for video headers
+  auto_play: true
+  mute: true
+  loop: true
+  plays_inline: true
+  overlay_opacity: 0.8
+
+# Commerce Settings
+commerce:
+  currency_code: "EUR"
+  currency_symbol: "€"
+  currency_location: "right"
+  tax_rate: 0.23  # 23% VAT (Portugal)
 
 # Site header
 header:
@@ -39,15 +60,15 @@ header:
       filename: 'logo.svg'
     button:
       enable: true
-      text: 'Get Started'
+      text: 'Book a Tour'
       url: 'https://hugoblox.com/templates/'
     show_search: true
-    show_theme_chooser: true
+    show_theme_chooser: false
 
 # Site footer
 footer:
   copyright:
-    notice: '© {year} My Company'
+    notice: '© {year} Ana Carvalho Adventures'
 
 # Localization
 locale:

@@ -1,0 +1,89 @@
+{{/* Stripe Checkout Button for Hugo Blox */}}
+{{ $tourId := .Get "tourId" | default "default-tour" }}
+{{ $tourName := .Get "tourName" | default "Tour" }}
+{{ $price := .Get "price" | default 4500 }}
+{{ $text := .Get "text" | default (printf "Book Now - %.2f€" (div $price 100)) }}
+
+<div class="stripe-checkout-section my-6">
+  <button 
+    id="checkout-button-{{ $tourId }}"
+    class="bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+  >
+    {{ $text }}
+  </button>
+  <div id="error-message-{{ $tourId }}" class="error-message mt-2 p-3 text-red-600 bg-red-50 border border-red-200 rounded-lg hidden"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if Stripe.js is already loaded
+  if (typeof Stripe !== 'undefined') {
+    initializeStripe();
+  } else {
+    // Load Stripe.js dynamically if not already loaded
+    const script = document.createElement('script');
+    script.src = 'https://js.stripe.com/v3/';
+    script.async = true;
+    script.onload = initializeStripe;
+    document.head.appendChild(script);
+  }
+
+  function initializeStripe() {
+    // Initialize Stripe using your public key - replace with your actual public key
+    // For demonstration purposes, using a placeholder key - replace with your real public key
+    const stripe = Stripe('{{ site.Params.stripe.public_key | default "pk_test_XXXXXXXXXXXXXXXXXXXXXXXX" }}');
+    
+    const checkoutButton = document.getElementById('checkout-button-{{ $tourId }}');
+    
+    checkoutButton.addEventListener('click', function() {
+      // In a real implementation, you would create a checkout session on your server
+      // This is a template for the functionality
+      fetch('/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tourId: '{{ $tourId }}',
+          tourName: '{{ $tourName }}',
+          price: {{ $price }}, // Price in cents
+        }),
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(session) {
+        return stripe.redirectToCheckout({ sessionId: session.id });
+      })
+      .then(function(result) {
+        // If redirectToCheckout fails due to a browser or network error
+        if (result.error) {
+          const errorMsg = document.getElementById('error-message-{{ $tourId }}');
+          errorMsg.innerText = result.error.message;
+          errorMsg.classList.remove('hidden');
+        }
+      })
+      .catch(function(error) {
+        console.error('Error:', error);
+        const errorMsg = document.getElementById('error-message-{{ $tourId }}');
+        errorMsg.innerText = 'An error occurred during checkout. Please contact support.';
+        errorMsg.classList.remove('hidden');
+      });
+    });
+  }
+});
+</script>
+
+<style>
+.stripe-checkout-section {
+  text-align: center;
+  margin: 2rem 0;
+}
+.error-message {
+  animation: fadeIn 0.3s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>

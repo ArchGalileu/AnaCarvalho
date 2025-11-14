@@ -13,5 +13,18 @@
     "@tailwindcss/typography": "^0.5.10",
     "preact": "^10.27.2",
     "tailwindcss": "^4.1.12"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArchGalileu/ArchGalileu.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ArchGalileu/ArchGalileu.github.io/issues"
+  },
+  "homepage": "https://github.com/ArchGalileu/ArchGalileu.github.io#readme"
 }

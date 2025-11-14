@@ -28,12 +28,12 @@ cascade:
     header:
       navbar:
         enable: true
-  # Blog section options
-  - _target:
-      path: /blog/*
-      kind: section
-    # Set the listing view
-    view: date-title-summary
+##  # Blog section options
+##  - _target:
+##      path: /blog/*
+##      kind: section
+##    # Set the listing view
+##    view: date-title-summary
 
 ############################
 ## LANGUAGE
